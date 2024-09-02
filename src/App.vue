@@ -1,30 +1,44 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <Header />
+  <main>
+    <router-view />
+  </main>
+  <Footer />
 </template>
+
+<script setup>
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
+
+const initStorage = () => {
+  if (localStorage.getItem("UserAbout")) return;
+
+  localStorage.setItem(
+    "UserAbout",
+    JSON.stringify({
+      name: "Кирюха",
+      age: 15,
+    })
+  );
+
+  localStorage.setItem("UserChildren", JSON.stringify([]));
+};
+
+initStorage();
+</script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+main {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 616px;
+  padding: 30px 0;
+  margin: 0 auto;
 }
 </style>

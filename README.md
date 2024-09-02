@@ -1,5 +1,7 @@
 # alef-test
 
+## NODE VERSION - 16.14.2
+
 ## Project setup
 ```
 npm install
